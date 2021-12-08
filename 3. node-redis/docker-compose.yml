@@ -1,0 +1,14 @@
+version: "3"
+services:
+  redis-server:
+    image: "redis"
+  node-app:
+    #RESTART POLICIES FOR CONTAINERS
+    #restart: "no" -> Never attempt to restart the container if it stops or crashes
+    #restart: always -> If this container stops *for any reason* always attempt to restart it
+    #restart: on-failure -> Only restart if the container stops with an error code
+    #restart: unless-stopped -> Always restart unless we (developers) forcibly stop it
+    restart: on-failure
+    build: ./node
+    ports:
+      - "8081:8084"
