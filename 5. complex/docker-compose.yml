@@ -2,6 +2,8 @@ version: '3'
 services:
   postgres:
     image: 'postgres:latest'
+    ports:
+      - "4444:5432"
     environment:
       - POSTGRES_PASSWORD=root
   redis:
@@ -39,6 +41,8 @@ services:
     volumes:
       - /usr/app/node_modules
       - ./client:/usr/app
+    environment:
+      - CHOKIDAR_USEPOLLING=true
 
   worker:
     build:
