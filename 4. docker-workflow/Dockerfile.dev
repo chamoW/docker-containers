@@ -5,16 +5,18 @@ FROM node:16-alpine
 WORKDIR /usr/app
 
 # Copy package.json to work directory
-COPY package.json .
+COPY ./frontend/package.json .
 
 # Run comands to install dependencies
-RUN npm install
+#RUN npm install
+RUN yarn install
 
 # Copy all the rest files
 COPY . .
 
 # Default commando for the image
-CMD [ "npm", "run", "start" ]
+#CMD [ "npm", "run", "start" ]
+CMD [ "yarn", "start" ]
 
 
 
