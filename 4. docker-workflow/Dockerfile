@@ -5,8 +5,8 @@ FROM node:16-alpine as builder
 WORKDIR /usr/app
 COPY ./frontend/package.json .
 RUN yarn install
-COPY . .
-RUN yarn build
+COPY ./frontend .
+RUN yarn run build
 
 # Default commando for the image, no es necesario
 #CMD [ ]

@@ -12,7 +12,7 @@ COPY ./frontend/package.json .
 RUN yarn install
 
 # Copy all the rest files
-COPY . .
+COPY ./frontend .
 
 # Default commando for the image
 #CMD [ "npm", "run", "start" ]
