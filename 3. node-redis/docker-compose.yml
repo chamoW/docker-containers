@@ -1,8 +1,11 @@
 version: "3"
 services:
-  redis-server:
-    image: "redis"
+  redis:
+    extends:
+      file: services/redis.yml
+      service: redis
   node-app:
+    container_name: node-app
     #RESTART POLICIES FOR CONTAINERS
     #restart: "no" -> Never attempt to restart the container if it stops or crashes
     #restart: always -> If this container stops *for any reason* always attempt to restart it
@@ -11,4 +14,7 @@ services:
     restart: on-failure
     build: ./node
     ports:
-      - "8081:8084"
+      - "4001:8084"
+
+networks:
+  node-redis:
