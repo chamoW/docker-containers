@@ -4,13 +4,15 @@ const process = require("process");
 
 const app = express();
 const client = redis.createClient({
-  host: "redis-server",
+  host: "redis",
   port: 6379,
 });
 
 client.set("visits", 0);
 
 app.get("/", (req, res) => {
+
+  //process.exit(1); // ONLY FOR FAILURE TESTING
   client.get("visits", (error, visits) => {
     res.send("Number of visits is: " + visits);
     client.set("visits", parseInt(visits) + 1);
