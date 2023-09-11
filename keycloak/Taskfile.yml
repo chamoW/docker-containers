@@ -1,0 +1,15 @@
+version: "3"
+
+dotenv: ['.env']
+
+vars:
+  IMAGE_NAME: diamoncode-keycloak
+  LOCAL_IMAGE: local/{{.IMAGE_NAME}}:SNAPSHOT
+  
+tasks:
+  local-image:
+    cmds:
+    - docker build -t {{.LOCAL_IMAGE}} .
+  docker-compose-up:
+    cmds:
+      - docker compose up -d

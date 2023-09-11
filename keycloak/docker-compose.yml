@@ -1,0 +1,17 @@
+version: "3.1"
+
+services:
+  keycloak_server:
+    image: quay.io/keycloak/keycloak:latest
+    container_name:  keycloak_server
+    command: start-dev --http-port=7080 \
+             --db=postgres \
+             --db-url=${KC_DB_URL} \
+             --db-username=${KC_DB_USERNAME} \
+             --db-password=${KC_DB_PASSWORD}
+    ports:
+      - "7080:7080"
+    environment:
+      - KEYCLOAK_ADMIN=${KEYCLOAK_ADMIN}
+      - KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_ADMIN_PASSWORD}
+
